@@ -7,16 +7,44 @@
 </head>
 <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 <body>
+<?php
+	$host = "localhost";
+	$user = "root";
+	$password = "";
+	$nama= $_POST['nama'];
+	$username= $_POST['username'];
+	$email = $_POST['email'];
+	$passw = $_POST['password'];
+if ($nama){
+		$conn=mysqli_connect($host,$user,$password);
+		mysqli_select_db($conn,"instagram_db");
+		$sql="insert into insta_table values ('$nama', '$username', '$email', '$passw')";
+		$hasil= mysqli_query($conn,$sql);
+		echo "Data berhasil disimpan";
+	}
+	else{
+		echo "Data Gagal disimpan";
+	}
+$koneksi = mysql_connect('localhost', 'root', '') or die ("Gagal connect ke server");
+mysql_select_db("instagram_db") or die ("gagal membuka database");
+?>
 <table align="center" class="tableview">
 	<tr>
 		<td><img src="logo.png" />
 		</td>
 	</tr>
+<?php
+$sql="select * from insta_table";
+$hasil= mysql_query($sql, $koneksi) or die("gagal melakukan query");
+while ($row=mysql_fetch_array($hasil)) {
+	# cod
+}
+?>
 	<tr>
 		<td>Nama</td>
 		<td>:</td>
 		<td><?php
-			 echo $_POST ["nama"];
+			 echo $_POST["nama"];
 			 ?>
 		</td>
 	</tr>
@@ -43,15 +71,19 @@
 		<td>Password</td>
 		<td>:</td>
 		<td><?php
-			$password = $_POST["password"];
-			$password = str_repeat("*", strlen($password));
-			echo "$password";
+			$passw = $_POST["password"];
+			$passw = str_repeat("*", strlen($passw));
+			echo "$passw";
 			?>
 			</td> 
 	</tr>
 	
 	<tr>
 		<td><a href="index.php"><button class="daftar">BACK</button></a></td>
+		<?php
+	
+	mysql_close($koneksi);
+		?>
 	</tr>
 </table>
 </body>
