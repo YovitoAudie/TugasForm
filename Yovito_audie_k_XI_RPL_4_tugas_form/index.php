@@ -29,4 +29,10 @@
 				</div>
 			</form>
 			<div class ="alhv">Already have an account? <a href="#"><span>Log in</span></a></div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<a href="tampil.php">Debugger tool</a>
 		</body>
